@@ -1,4 +1,4 @@
-from locust import HttpUser as HUser, between, task
+from locust import HttpUser as HUser, between, task, constant
 
 
 class HttpUser(HUser):
@@ -10,7 +10,7 @@ class HttpUser(HUser):
 
     @task(3)
     def login(self):
-        self.wait_time = 5
+        self.wait_time = constant(5)
         self.client.post("/login")
 
     @task
